@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://l5ptgbpikfn3"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_6xqhr"]
+[ext_resource type="Texture2D" uid="uid://bwf83rp0r50ro" path="res://assets/texture/card/cooling_water_pump.png" id="2_6xqhr"]
+
+[resource]
+script = ExtResource("1_6xqhr")
+texture = ExtResource("2_6xqhr")
+name = "Water Cool Pump"
+resistance = 0.0
+metadata/_custom_type_script = ExtResource("1_6xqhr")

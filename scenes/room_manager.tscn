@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://8nridijofodc"]
+
+[ext_resource type="Script" uid="uid://c3n8h5jfn86ab" path="res://scenes/room_manager.gd" id="1_qjpgd"]
+
+[node name="RoomManager" type="CanvasLayer" node_paths=PackedStringArray("room_nodes", "transition_nodes")]
+script = ExtResource("1_qjpgd")
+room_nodes = NodePath("RoomNodes")
+transition_nodes = NodePath("TransitionNodes")
+
+[node name="RoomNodes" type="CanvasLayer" parent="."]
+
+[node name="TransitionNodes" type="CanvasLayer" parent="."]

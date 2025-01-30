@@ -1,0 +1,36 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Bigmode Game Jam 2025"
+run/main_scene="uid://8nridijofodc"
+config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+config/icon="res://icon.svg"
+
+[autoload]
+
+Registries="*res://scripts/registries/registries.gd"
+TransitionManager="*res://scripts/transition_manager/transition_manager.gd"
+AnimateHandler="*res://scripts/animate_handler/animate_handler.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=720
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

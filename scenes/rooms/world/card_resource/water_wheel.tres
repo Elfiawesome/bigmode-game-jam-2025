@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://b6gnvkppsy3by"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_dieux"]
+[ext_resource type="Texture2D" uid="uid://cxdmghano8hv3" path="res://assets/texture/card/water_wheel.png" id="2_dieux"]
+
+[resource]
+script = ExtResource("1_dieux")
+texture = ExtResource("2_dieux")
+name = "Water Wheel"
+resistance = 0.0
+metadata/_custom_type_script = ExtResource("1_dieux")

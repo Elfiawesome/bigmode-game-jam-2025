@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bpngy47yw8l00"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_otv0u"]
+[ext_resource type="Texture2D" uid="uid://ba51oajrnashv" path="res://assets/texture/card/hand_crank_generator.png" id="2_n3dep"]
+
+[resource]
+script = ExtResource("1_otv0u")
+texture = ExtResource("2_n3dep")
+name = "Hand Crank Generator"
+resistance = 0.0
+metadata/_custom_type_script = ExtResource("1_otv0u")

@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ddvc2gopphjj0"]
+
+[ext_resource type="Shader" uid="uid://cqa8nerq5iaf0" path="res://assets/shader/power_orb.gdshader" id="1_mt3es"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g2hcj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bkhl2"]
+noise = SubResource("FastNoiseLite_g2hcj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rlrm8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hsyp2"]
+noise = SubResource("FastNoiseLite_rlrm8")
+
+[resource]
+shader = ExtResource("1_mt3es")
+shader_parameter/noise = SubResource("NoiseTexture2D_bkhl2")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_hsyp2")
+shader_parameter/brightness = 2.5
+shader_parameter/time_scale = 1.0

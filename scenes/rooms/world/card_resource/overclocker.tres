@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://cwfjeg60pefmq"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_0jinv"]
+[ext_resource type="Texture2D" uid="uid://b0k4x7f3gaxsj" path="res://assets/texture/card/overclocker.png" id="2_0jinv"]
+
+[resource]
+script = ExtResource("1_0jinv")
+texture = ExtResource("2_0jinv")
+name = "Overclocker"
+resistance = 0.2
+metadata/_custom_type_script = ExtResource("1_0jinv")

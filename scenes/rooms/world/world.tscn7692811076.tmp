@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://doehnvoppesjb"]
+
+[ext_resource type="Script" uid="uid://caynxokfigffc" path="res://scenes/rooms/world/world.gd" id="1_m1ldp"]
+[ext_resource type="Script" uid="uid://b2qffe3x3mysm" path="res://scenes/rooms/world/module_panel.gd" id="2_woxnb"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_m1ldp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ModulePanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_woxnb")
+
+[node name="control" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2

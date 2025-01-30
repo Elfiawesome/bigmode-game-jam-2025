@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://f7eh3bfmcp8q"]
+
+[ext_resource type="Script" uid="uid://b6gtieebyvr3i" path="res://scenes/rooms/world/card_tooltip.gd" id="1_m0shg"]
+[ext_resource type="Shader" path="res://assets/shader/gausian_blur.gdshader" id="2_hgmpj"]
+[ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="3_bdfx5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdfx5"]
+shader = ExtResource("2_hgmpj")
+shader_parameter/blur_radius = 10
+shader_parameter/Darkness = 0.0
+shader_parameter/R = 0.0
+shader_parameter/G = 0.0
+shader_parameter/B = 0.0
+shader_parameter/blur_strength = 10.0
+
+[node name="CardTooltip" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_m0shg")
+
+[node name="TooltipBox" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bdfx5")
+clip_contents = true
+layout_mode = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TooltipBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Name" type="Label" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 32
+text = "Name Here"
+
+[node name="Description" type="Label" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 16
+text = "asd"

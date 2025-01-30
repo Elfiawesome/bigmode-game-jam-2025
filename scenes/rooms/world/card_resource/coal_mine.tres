@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bktapo2x1hm4t"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_k30t5"]
+[ext_resource type="Texture2D" uid="uid://buxx4e1akg22s" path="res://assets/texture/card/coalmine.png" id="2_k30t5"]
+
+[resource]
+script = ExtResource("1_k30t5")
+texture = ExtResource("2_k30t5")
+name = "Coal Mine"
+resistance = 0.0
+metadata/_custom_type_script = ExtResource("1_k30t5")
