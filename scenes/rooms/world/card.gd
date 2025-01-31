@@ -1,5 +1,26 @@
 class_name Card extends Node2D
 
+class StackedDataFloat:
+	var _array: Array = []
+	func add(value: float, card: Card = null, time: int = -1) -> void:
+		_array.push_back([value, card, time])
+	func retrieve() -> float:
+		var total_value: float
+		for value: Array in _array:
+			total_value += value[0]
+		return total_value
+	func tick() -> void:
+		var to_remove: Array[Array] = []
+		for value: Array in _array:
+			if value[2] != -1:
+				if value[2] > 0:
+					value[2] -=1
+				else:
+					to_remove.push_back(value)
+		for value in to_remove:
+			_array.erase(value)
+
+
 signal mouse_entered(card: Card)
 signal mouse_exited(card: Card)
 signal clicked(card: Card)
@@ -15,7 +36,10 @@ var card_ability: CardAbility:
 	set(ability):
 		card_ability = ability
 		card_ability.parent_card = self
-var resistance: float
+
+var resistance := StackedDataFloat.new()
+var power_generation := StackedDataFloat.new()
+var transmission_strength := StackedDataFloat.new()
 
 enum CARD_STATE {
 	IDLE = 0,
@@ -42,7 +66,6 @@ func _ready() -> void:
 						released.emit(self)
 	)
 	_card_collision.mouse_entered.connect(func()->void:
-		print("L:Entered")
 		mouse_entered.emit(self)
 	)
 	_card_collision.mouse_exited.connect(func()->void:mouse_exited.emit(self))
@@ -51,28 +74,36 @@ func _process(delta: float) -> void:
 	$Label.text = str(power_orbs.size())
 	match card_state:
 		CARD_STATE.DRAG:
-			position = get_global_mouse_position()
+			global_position = get_global_mouse_position()
 
 enum ABILITY_TRIGGER {
 	ON_START,
+	ON_POWER_GENERATION,
 	ON_TICK,
+	ON_SIM_END_TICK,
 }
 
 func activate(trigger: ABILITY_TRIGGER) -> void:
 	match trigger:
 		ABILITY_TRIGGER.ON_START:
 			card_ability._on_start()
+		ABILITY_TRIGGER.ON_POWER_GENERATION:
+			card_ability._on_power_generation()
 			_animate_bounce()
 		ABILITY_TRIGGER.ON_TICK:
 			card_ability._on_tick()
 			if !power_orbs.is_empty():
 				_animate_bounce()
+		ABILITY_TRIGGER.ON_SIM_END_TICK:
+			# Tick all my cooldowns
+			resistance.tick()
+			power_generation.tick()
+			card_ability._on_sim_end_tick()
 func _throw_orbs(orbs := power_orbs) -> void:
-	var throw_str: int = 1
-	var destination_card := module_panel.get_card(card_pos+throw_str)
+	var destination_card := module_panel.get_card(card_pos+int(transmission_strength.retrieve()))
 	if destination_card:
 		for power_orb in orbs:
-			power_orb.reduce_energy(resistance)
+			power_orb.reduce_energy(resistance.retrieve())
 			destination_card._catch_orbs(power_orb)
 		power_orbs.clear()
 func _catch_orbs(power_orb: PowerOrb) -> void:

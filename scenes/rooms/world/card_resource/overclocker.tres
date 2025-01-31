@@ -7,5 +7,9 @@
 script = ExtResource("1_0jinv")
 texture = ExtResource("2_0jinv")
 name = "Overclocker"
-resistance = 0.2
+description = "Adjacent  Cards +1.5 Power Generation Generation (Cooldown: 1 turns)
+While on cooldown, +2.5 Resistance"
+power_generation = 0.0
+resistance = 0.5
+flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_0jinv")

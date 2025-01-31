@@ -3,13 +3,16 @@ class_name SimulationManager extends Node
 enum State { READY, PHASE_WAITING, COMPLETED }
 
 var _current_state: State = State.READY
-var _phase_start: PhaseBase
+var _phases_kickstart: Array[PhaseBase]
 var _phases: Array[PhaseBase]
 var _phase_index: int = 0
 var _module_panel: ModulePanel
 func _init(module_panel: ModulePanel) -> void:
 	_module_panel = module_panel
-	_phase_start = KickStartPhase.new(self, module_panel)
+	_phases_kickstart = [
+		KickStartPhase.new(self, module_panel),
+		PowerGenerationPhase.new(self, module_panel)
+	]
 	_phases = [
 		MovingPhase.new(self, module_panel),
 		TickPowerOrbPhase.new(self, module_panel),
@@ -18,7 +21,8 @@ func _init(module_panel: ModulePanel) -> void:
 
 func start_simulation() -> void:
 	if _current_state == State.READY:
-		_phase_start.execute()
+		for phase in _phases_kickstart:
+			phase.execute()
 		_current_state = State.PHASE_WAITING
 
 func _process(delta: float) -> void:
@@ -52,6 +56,11 @@ class KickStartPhase extends PhaseBase:
 		for card in module_panel.cards:
 			card.activate(card.ABILITY_TRIGGER.ON_START)
 
+class PowerGenerationPhase extends PhaseBase:
+	func run() -> void:
+		for card in module_panel.cards:
+			card.activate(card.ABILITY_TRIGGER.ON_POWER_GENERATION)
+
 class MovingPhase extends PhaseBase:
 	func run() -> void:
 		for card in module_panel.cards:
@@ -83,6 +92,8 @@ class TickCardPhase extends PhaseBase:
 			card.activate(card.ABILITY_TRIGGER.ON_TICK)
 	func check_return() -> bool:
 		if module_panel.power_orbs.is_empty():
+			for card in module_panel.cards:
+				card.activate(card.ABILITY_TRIGGER.ON_SIM_END_TICK)
 			return true
 		else:
 			return false

@@ -7,5 +7,8 @@
 script = ExtResource("1_6xqhr")
 texture = ExtResource("2_6xqhr")
 name = "Water Cool Pump"
+description = "-0.5 Resistance on adjacent cards"
+power_generation = 0.0
 resistance = 0.0
+flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_6xqhr")

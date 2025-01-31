@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ctst5k5xxdh"]
+
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_7y2w0"]
+[ext_resource type="Texture2D" uid="uid://2dv6jg22h8w7" path="res://assets/texture/card/coal_plant.png" id="2_7y2w0"]
+
+[resource]
+script = ExtResource("1_7y2w0")
+texture = ExtResource("2_7y2w0")
+name = "Coal Plant"
+description = "+8 Bonus Power if adjacent to one Coal Mine
+-3 Resistance if adjacent to one Transmission Tower"
+power_generation = 0.15
+transmission_strength = 1
+resistance = 4.0
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("1_7y2w0")

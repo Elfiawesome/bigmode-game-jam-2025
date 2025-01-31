@@ -7,5 +7,12 @@
 script = ExtResource("1_dieux")
 texture = ExtResource("2_dieux")
 name = "Water Wheel"
+description = "+1.25 Bonus Power if an adjacent card is Water Wheel
++1.25 Bonus Power if an adjacent card is Water Wheel
++1.25 Bonus Power if an adjacent card is Water Wheel
++1.25 Bonus Power if an adjacent card is Water Wheel"
+power_generation = 1.25
+transmission_strength = 1
 resistance = 0.0
+flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_dieux")

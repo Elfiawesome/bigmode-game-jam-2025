@@ -2,12 +2,15 @@ class_name ModulePanel extends Panel
 
 signal mouse_entered_on_card(card: Card)
 signal mouse_exited_on_card(card: Card)
+signal card_dragged(card: Card)
+signal power_level_changed(new_power: float, change: float)
 
 var cards: Array[Card] = []
-var power_stored: float = 0.0
+var power_level: float = 0.0
 var power_orbs: Array[PowerOrb] = []
 var _dragged_card: Card
 var _speed_multiplier: float = 1.0
+var base_speed_multiplier: float = .2#1.0
 
 const CARD_SIZE := Vector2(100,128) + Vector2(15,15)
 var end_card: EndCard = EndCard.new()
@@ -27,7 +30,9 @@ func _instantiate_card(card_id: String, card_ability: GDScript, card_resource: C
 	card._name_label.text = card_resource.name
 	card._module_icon.texture = card_resource.texture
 	card.card_ability = card_ability.new()
-	card.resistance = card_resource.resistance
+	card.resistance.add(card_resource.resistance, card)
+	card.power_generation.add(card_resource.power_generation, card)
+	card.transmission_strength.add(card_resource.transmission_strength, card)
 	
 	card.mouse_entered.connect(func(card: Card)->void:mouse_entered_on_card.emit(card))
 	card.mouse_exited.connect(func(card: Card)->void:mouse_exited_on_card.emit(card))
@@ -36,6 +41,7 @@ func _instantiate_card(card_id: String, card_ability: GDScript, card_resource: C
 			if !_dragged_card:
 				card.card_state = card.CARD_STATE.DRAG
 				_dragged_card = card
+				card_dragged.emit(card)
 	)
 	card.released.connect(
 		func(card: Card) -> void:
@@ -75,7 +81,7 @@ func add_card(card_id: String) -> void:
 
 func _get_grid_index_from_position(card_position: Vector2) -> int:
 	var index := 0
-	var total_columns: int = floor(size.x/CARD_SIZE.x) - 1
+	var total_columns: int = max(floor(size.x/CARD_SIZE.x) - 1,0)
 	var total_rows: float = ceil((len(cards)-1)/(total_columns+1))
 	var start_pos := Vector2(
 		size.x - total_columns * CARD_SIZE.x, 
@@ -86,7 +92,7 @@ func _get_grid_index_from_position(card_position: Vector2) -> int:
 	return index
 
 func _arrange_cards() -> void:
-	var total_columns: int = floor(size.x/CARD_SIZE.x) - 1
+	var total_columns: int = max(floor(size.x/CARD_SIZE.x) - 1,0)
 	var total_rows: float = ceil((len(cards)-1)/(total_columns+1))
 	var start_pos := Vector2(
 		size.x - total_columns * CARD_SIZE.x, 
@@ -148,13 +154,23 @@ func destroy_power_orb(power_orb: PowerOrb) -> void:
 
 func absorb_power_orb(power_orb: PowerOrb) -> void:
 	if power_orb in power_orbs:
-		power_stored += power_orb.energy
-		print(power_stored)
+		add_power_level(power_orb.energy)
 		power_orbs.erase(power_orb)
 		power_orb.parent_card.power_orbs.erase(power_orb)
 		power_orb.destroy(1)
 
-func reset_speed_multiplier() -> void: _speed_multiplier = 1.0
+func add_power_level(new_value: float) -> void:
+	power_level += new_value
+	power_level_changed.emit(power_level, new_value)
+func remove_power_level(new_value: float) -> void:
+	power_level -= new_value
+	power_level_changed.emit(power_level, new_value)
+func set_power_level(new_value: float) -> void:
+	var change := new_value - power_level
+	power_level = new_value
+	power_level_changed.emit(power_level, change)
+
+func reset_speed_multiplier() -> void: _speed_multiplier = base_speed_multiplier
 func tick_speed_multiplier() -> void: _speed_multiplier = max(_speed_multiplier-0.05, 0.2)
 func get_speed_multiplier() -> float: return _speed_multiplier
 

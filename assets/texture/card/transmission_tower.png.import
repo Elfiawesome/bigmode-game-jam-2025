@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buxx4e1akg22s"
-path="res://.godot/imported/coalmine.png-f445940bd1048bf4823dad80911f73c2.ctex"
+uid="uid://ddbejhvu5rsqs"
+path="res://.godot/imported/transmission_tower.png-a2ac650abd02c0054429450e592b0e2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/card/coalmine.png"
-dest_files=["res://.godot/imported/coalmine.png-f445940bd1048bf4823dad80911f73c2.ctex"]
+source_file="res://assets/texture/card/transmission_tower.png"
+dest_files=["res://.godot/imported/transmission_tower.png-a2ac650abd02c0054429450e592b0e2b.ctex"]
 
 [params]
 

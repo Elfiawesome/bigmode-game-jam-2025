@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://f7eh3bfmcp8q"]
 
 [ext_resource type="Script" uid="uid://b6gtieebyvr3i" path="res://scenes/rooms/world/card_tooltip.gd" id="1_m0shg"]
-[ext_resource type="Shader" path="res://assets/shader/gausian_blur.gdshader" id="2_hgmpj"]
+[ext_resource type="Shader" uid="uid://dgo5oij1en38h" path="res://assets/shader/gausian_blur.gdshader" id="2_hgmpj"]
 [ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="3_bdfx5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdfx5"]
@@ -52,8 +52,113 @@ theme_override_font_sizes/font_size = 32
 text = "Name Here"
 
 [node name="Description" type="Label" parent="TooltipBox/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_bdfx5")
 theme_override_font_sizes/font_size = 16
-text = "asd"
+text = "→ A very long description of text here and there"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="StatsTitle" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "Stats"
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Resistance" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "Resistance"
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="PowerGeneration" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerGeneration"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "Power Generation: "
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerGeneration"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="TransmissionStrength" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "Transmission Strength: "
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_bdfx5")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Debug1" type="ColorRect" parent="."]
+layout_mode = 0
+mouse_filter = 2
+color = Color(1, 1, 0.443137, 0.282353)
+
+[node name="Debug2" type="ColorRect" parent="."]
+layout_mode = 0
+mouse_filter = 2
+color = Color(1, 0.150209, 0.188476, 0.282353)
