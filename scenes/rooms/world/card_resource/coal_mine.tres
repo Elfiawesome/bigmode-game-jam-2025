@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bktapo2x1hm4t"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bktapo2x1hm4t"]
 
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_ijnbo"]
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_k30t5"]
 [ext_resource type="Texture2D" uid="uid://buxx4e1akg22s" path="res://assets/texture/card/coal_mine.png" id="2_k30t5"]
 
@@ -7,8 +8,12 @@
 script = ExtResource("1_k30t5")
 texture = ExtResource("2_k30t5")
 name = "Coal Mine"
-description = ""
-power_generation = 0.0
-resistance = 0.0
+resistance = 3.5
+power_output = 0.0
+transmission_strength = 4
+can_generate_power = false
+ability_description = ""
+rarity = 1
+custom_card_back = ExtResource("1_ijnbo")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_k30t5")

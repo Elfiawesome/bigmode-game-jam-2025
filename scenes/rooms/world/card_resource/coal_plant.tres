@@ -1,16 +1,21 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ctst5k5xxdh"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ctst5k5xxdh"]
 
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_7y2w0"]
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_afq4q"]
 [ext_resource type="Texture2D" uid="uid://2dv6jg22h8w7" path="res://assets/texture/card/coal_plant.png" id="2_7y2w0"]
 
 [resource]
 script = ExtResource("1_7y2w0")
 texture = ExtResource("2_7y2w0")
 name = "Coal Plant"
-description = "+8 Bonus Power if adjacent to one Coal Mine
--3 Resistance if adjacent to one Transmission Tower"
-power_generation = 0.15
+resistance = 6.0
+power_output = 5.5
 transmission_strength = 1
-resistance = 4.0
+can_generate_power = true
+ability_description = "Generates 5.5[POWER].
+Bonus 8[POWER] if adjacent to one [CARD:coal_mine].
+-4.5[RESISTANCE] if adjacent to one [CARD:transmission_tower]."
+rarity = 2
+custom_card_back = ExtResource("1_afq4q")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_7y2w0")

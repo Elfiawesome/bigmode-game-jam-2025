@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcpgbovt1y4cy"]
+
+[ext_resource type="Script" uid="uid://bfikybbfo5v1h" path="res://scenes/rooms/world/power_stored_effect.gd" id="1_efr37"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="2_4jn6y"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="2_tj5ma"]
+
+[node name="PowerStoredEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_efr37")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Power" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.682353, 0.203922, 1)
+theme_override_colors/font_outline_color = Color(0.25, 0.17, 0.05, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_4jn6y")
+theme_override_font_sizes/font_size = 30
+text = "1.0"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_tj5ma")
+expand_mode = 3

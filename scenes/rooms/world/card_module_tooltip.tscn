@@ -1,0 +1,180 @@
+[gd_scene load_steps=8 format=3 uid="uid://mcxryk1sq0fr"]
+
+[ext_resource type="Script" uid="uid://li0ijt24etqc" path="res://scenes/rooms/world/card_module_tooltip.gd" id="1_n5mri"]
+[ext_resource type="Material" uid="uid://dobp31x85puh8" path="res://assets/shader/default_blur.tres" id="2_otpa4"]
+[ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="3_ernaw"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="4_qgf8k"]
+[ext_resource type="Texture2D" uid="uid://sc6sscgkm768" path="res://assets/texture/icons/resistance.png" id="5_d88dq"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="6_otpa4"]
+[ext_resource type="Texture2D" uid="uid://cxg253qw6r5wr" path="res://assets/texture/icons/transmission_strength.png" id="7_otpa4"]
+
+[node name="ModuleCardTooltip" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 499.0
+offset_bottom = 193.0
+mouse_filter = 2
+script = ExtResource("1_n5mri")
+
+[node name="TooltipBox" type="ColorRect" parent="."]
+material = ExtResource("2_otpa4")
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="TooltipBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Name" type="Label" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 32
+text = "Name"
+
+[node name="Description" type="RichTextLabel" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_ernaw")
+theme_override_fonts/italics_font = ExtResource("3_ernaw")
+theme_override_fonts/bold_italics_font = ExtResource("4_qgf8k")
+theme_override_fonts/bold_font = ExtResource("4_qgf8k")
+bbcode_enabled = true
+text = "Descriptions"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="TooltipBox/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="Title" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "Stats"
+
+[node name="ColorRect" type="ColorRect" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PowerOutput" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "Power Output"
+
+[node name="Meaning" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 8
+text = "(Amount of power this card 
+will be able to generate at
+the start of each turn) "
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+texture = ExtResource("6_otpa4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Resistance" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "Resistance"
+
+[node name="Meaning" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 8
+text = "(Amount of power 
+deducted whenpower is
+ flowed through this card) "
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+texture = ExtResource("5_d88dq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TransmissionStrength" type="HBoxContainer" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "Transmission Strength"
+
+[node name="Meaning" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 8
+text = "(Amount this card can
+transfer power across
+next cards) "
+
+[node name="Value" type="Label" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ernaw")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="TooltipBox/VBoxContainer/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+texture = ExtResource("7_otpa4")
+expand_mode = 3
+stretch_mode = 5

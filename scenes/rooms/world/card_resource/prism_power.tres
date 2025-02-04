@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://cxdf0ogdtut5y"]
+
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_rphe8"]
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="2_ai4nv"]
+[ext_resource type="Texture2D" uid="uid://wwhx8fi6il6k" path="res://assets/texture/card/prism_power.png" id="3_rphe8"]
+
+[resource]
+script = ExtResource("2_ai4nv")
+texture = ExtResource("3_rphe8")
+name = "Prism Power"
+resistance = 0.3
+power_output = 2.25
+transmission_strength = 1
+can_generate_power = true
+ability_description = "Generates 2.25[POWER].
+Splits incoming [POWER] to the next 2 cards."
+rarity = 2
+custom_card_back = ExtResource("1_rphe8")
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("2_ai4nv")

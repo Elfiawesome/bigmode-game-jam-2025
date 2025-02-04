@@ -1,21 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://doehnvoppesjb"]
+[gd_scene load_steps=13 format=3 uid="uid://doehnvoppesjb"]
 
 [ext_resource type="Script" uid="uid://caynxokfigffc" path="res://scenes/rooms/world/world.gd" id="1_m1ldp"]
-[ext_resource type="Shader" uid="uid://cj60ska3ww3ah" path="res://assets/shader/procedural_electric_background_shader.gdshader" id="2_rtbnb"]
-[ext_resource type="Script" uid="uid://b2qffe3x3mysm" path="res://scenes/rooms/world/module_panel.gd" id="2_woxnb"]
-[ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="3_yqbm3"]
-[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="4_gj05t"]
-[ext_resource type="PackedScene" uid="uid://f7eh3bfmcp8q" path="res://scenes/rooms/world/card_tooltip.tscn" id="4_qu1hd"]
-[ext_resource type="PackedScene" uid="uid://c7p7316pmdb4u" path="res://scenes/rooms/world/power_on_panel.tscn" id="4_rtbnb"]
+[ext_resource type="Shader" uid="uid://c3xamfp3rcw4x" path="res://assets/shader/synapse.gdshader" id="2_qu1hd"]
+[ext_resource type="PackedScene" uid="uid://csou40p41pdfk" path="res://scenes/rooms/world/play_display/play_display.tscn" id="2_woxnb"]
+[ext_resource type="Shader" uid="uid://sn2adaalxffb" path="res://assets/shader/background_distortion.gdshader" id="2_xrsqf"]
+[ext_resource type="PackedScene" uid="uid://mcxryk1sq0fr" path="res://scenes/rooms/world/card_module_tooltip.tscn" id="3_yqbm3"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="4_rtbnb"]
+[ext_resource type="Texture2D" uid="uid://2tfj3wtcmvw0" path="res://assets/texture/metal_panel.png" id="4_x0juk"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="5_s3pwo"]
+[ext_resource type="PackedScene" uid="uid://bn8y8bv6iorsd" path="res://scenes/rooms/world/menu_ui/ui_elements/power_button.tscn" id="6_gj05t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu1hd"]
-shader = ExtResource("2_rtbnb")
-shader_parameter/background_color = Color(0, 0, 0, 1)
-shader_parameter/line_color = Color(0.996078, 0.905882, 0.380392, 1)
-shader_parameter/line_freq = 9.56
-shader_parameter/height = 0.6
-shader_parameter/speed = 0.8
-shader_parameter/scale = Vector2(2, 16)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtbnb"]
+shader = ExtResource("2_qu1hd")
+shader_parameter/pixel_size = Vector2(0.001, 0.001)
+shader_parameter/voronoi_scale = 20.0
+shader_parameter/voronoi_seed = 0.0
+shader_parameter/electric_scale = 20.0
+shader_parameter/electric_speed = 1.0
+shader_parameter/electric_power = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv12j"]
+shader = ExtResource("2_xrsqf")
+shader_parameter/color_one = Color(0.12, 0.07, 0, 1)
+shader_parameter/color_two = Color(0.4, 0.233333, 0, 1)
+shader_parameter/angle = 35.0
+shader_parameter/line_count = 40.0
+shader_parameter/speed = 5.5
+shader_parameter/blur = 0.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_xrsqf"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m1ldp")
@@ -24,7 +37,16 @@ script = ExtResource("1_m1ldp")
 
 [node name="Background" type="ColorRect" parent="CanvasLayer"]
 visible = false
-material = SubResource("ShaderMaterial_qu1hd")
+material = SubResource("ShaderMaterial_rtbnb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_xv12j")
+custom_minimum_size = Vector2(1, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -38,11 +60,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 1
-offset_right = 1.0
-offset_bottom = 23.0
-
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -50,51 +67,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="ControlPanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(300, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="ModulePanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(100, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("2_woxnb")
 
-[node name="RelicsPanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.247059)
+clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
-theme_override_constants/separation = 15
-alignment = 1
 
-[node name="QuotaPanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(300, 0)
+[node name="PlayDisplay" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Panel" instance=ExtResource("2_woxnb")]
+layout_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel"]
+[node name="Panel" type="NinePatchRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+texture = ExtResource("4_x0juk")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,63 +116,101 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "Quota"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Title" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_yqbm3")
-text = "Power Quota"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Power" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_yqbm3")
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_gj05t")
-expand_mode = 2
+texture = ExtResource("5_s3pwo")
+expand_mode = 3
+stretch_mode = 4
 
-[node name="Slash" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_yqbm3")
-text = " / "
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
+text = "/"
 
-[node name="Quota" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_yqbm3")
-text = "10"
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
+text = "0"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/QuotaPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_gj05t")
-expand_mode = 2
+texture = ExtResource("5_s3pwo")
+expand_mode = 3
+stretch_mode = 4
 
-[node name="PowerOnPanel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_rtbnb")]
-layout_mode = 2
-
-[node name="RelicsPanel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(300, 0)
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CardTooltip" parent="CanvasLayer/Panel" instance=ExtResource("4_qu1hd")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 249.0
-offset_top = 207.0
-offset_right = 249.0
-offset_bottom = 207.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "in "
+vertical_alignment = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = " turns"
+vertical_alignment = 2
+
+[node name="MetalPanelButton" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_gj05t")]
+layout_mode = 2
+size_flags_horizontal = 3
+button_text = "Power ON"
+
+[node name="SpeedButton" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_gj05t")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+button_text = "x1"
+
+[node name="Panel" type="NinePatchRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+texture = ExtResource("4_x0juk")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 11
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="CardModuleTooltip" parent="CanvasLayer" instance=ExtResource("3_yqbm3")]
+offset_left = 353.0
+offset_top = 260.0
+offset_right = -543.0
+offset_bottom = -336.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_xrsqf")
+volume_db = -10.0

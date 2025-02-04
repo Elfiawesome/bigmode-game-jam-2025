@@ -3,11 +3,20 @@ extends Node
 signal animation_emptied()
 
 class _TweenAnimate extends Animate:
-	var tween: Tween
 	func define_tween(tween: Tween) -> void: tween.finished.connect(_on_tween_finished)
 	func _on_tween_finished() -> void: end()
 
+var default_speed: float = 1.0
+
 var _queue: Array[Animate] = []
+var _speed: float = 1.0
+
+func _ready() -> void:
+	reset_speed()
+
+func reset_speed() -> void: _speed = default_speed
+func speed() -> float: return _speed
+func speed_up() -> void: _speed = min(_speed+0.1, 5)
 
 func add_to_queue(animate: Animate) -> void:
 	_queue.push_back(animate)
@@ -15,6 +24,7 @@ func add_to_queue(animate: Animate) -> void:
 
 func create_tween_to_queue() -> Tween:
 	var tween := get_tree().create_tween()
+	tween.set_speed_scale(speed())
 	add_tween_to_queue(tween)
 	return tween
 

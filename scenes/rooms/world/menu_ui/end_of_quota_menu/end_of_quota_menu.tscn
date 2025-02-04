@@ -1,0 +1,226 @@
+[gd_scene load_steps=10 format=3 uid="uid://pot5r6av0r6w"]
+
+[ext_resource type="Texture2D" uid="uid://2tfj3wtcmvw0" path="res://assets/texture/metal_panel.png" id="1_nfqfc"]
+[ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="2_1s5ao"]
+[ext_resource type="Script" uid="uid://d0gn6m3h2uuyr" path="res://scenes/rooms/world/menu_ui/end_of_quota_menu/end_of_quota_menu.gd" id="2_amrmp"]
+[ext_resource type="Texture2D" uid="uid://di1akrtb7rt36" path="res://assets/texture/icons/approved_stamp.png" id="3_amrmp"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="4_ajxik"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="4_amrmp"]
+[ext_resource type="Texture2D" uid="uid://cb4ttv1o6mr34" path="res://assets/texture/icons/failure_stamp.png" id="4_euee4"]
+[ext_resource type="Texture2D" uid="uid://7syoudml4llg" path="res://assets/texture/icons/rubber_stamp.png" id="5_ajxik"]
+[ext_resource type="Texture2D" uid="uid://cxsgfoctlgwnm" path="res://assets/texture/card/basic_junction_box.png" id="6_ajxik"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -311.5
+offset_right = 151.0
+offset_bottom = 311.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_amrmp")
+
+[node name="Control" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+texture = ExtResource("1_nfqfc")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 11
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1s5ao")
+text = "Your Quota in Summary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ajxik")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_amrmp")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_amrmp")
+theme_override_font_sizes/font_size = 16
+text = "/"
+
+[node name="Label3" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_amrmp")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1s5ao")
+text = "Your Best Performing Cards"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_ajxik")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1s5ao")
+text = "power"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("6_ajxik")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/Control/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1s5ao")
+text = "power"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SignatureLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_1s5ao")
+text = "Status:   _____________"
+
+[node name="ApprovedStamp" type="Sprite2D" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/SignatureLabel"]
+visible = false
+position = Vector2(169, -3)
+texture = ExtResource("3_amrmp")
+
+[node name="FailureStamp" type="Sprite2D" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/SignatureLabel"]
+visible = false
+position = Vector2(168, -4)
+texture = ExtResource("4_euee4")
+
+[node name="RubberStamp" type="Sprite2D" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/SignatureLabel"]
+visible = false
+position = Vector2(175, -40)
+texture = ExtResource("5_ajxik")
+
+[node name="Control2" type="Control" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OkayButton" type="Control" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/OkayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer/VBoxContainer/OkayButton/MarginContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/OkayButton/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_amrmp")
+theme_override_font_sizes/font_size = 32
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1s5ao")
+theme_override_font_sizes/font_size = 8
+text = "Thank you"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	TransitionManager.transition_nodes = transition_nodes
 	change_room(
-		"world",
+		"main_menu",
 		"fade",
 		{"color":Color.BLACK}
 	)

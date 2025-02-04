@@ -1,14 +1,20 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bhmrmqkodljd8"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bhmrmqkodljd8"]
 
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_g3jdx"]
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_he24a"]
 [ext_resource type="Texture2D" uid="uid://c4ftwqgtd2gj2" path="res://assets/texture/card/solar_panel.png" id="2_v7l3k"]
 
 [resource]
 script = ExtResource("1_g3jdx")
 texture = ExtResource("2_v7l3k")
 name = "Solar Panel"
-description = "+1 Bonus Power for every adjacent Solar Panel"
-power_generation = 4.0
-resistance = 0.0
+resistance = 1.2
+power_output = 4.0
+transmission_strength = 1
+can_generate_power = true
+ability_description = "Generates 4[POWER].
+Bonus 1.25[POWER] for every adjacent [CARD:solar_panel]."
+rarity = 0
+custom_card_back = ExtResource("1_he24a")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_g3jdx")

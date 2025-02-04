@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bpngy47yw8l00"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bpngy47yw8l00"]
 
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_n3dep"]
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_otv0u"]
 [ext_resource type="Texture2D" uid="uid://ba51oajrnashv" path="res://assets/texture/card/hand_crank_generator.png" id="2_n3dep"]
 
@@ -7,8 +8,13 @@
 script = ExtResource("1_otv0u")
 texture = ExtResource("2_n3dep")
 name = "Hand Crank Generator"
-description = "-1.25 Bonus Power for every adjacent card"
-power_generation = 5.0
 resistance = 0.0
+power_output = 4.0
+transmission_strength = 1
+can_generate_power = true
+ability_description = "Generates 4[POWER].
+-1.25[POWER] for any adjacent card."
+rarity = 0
+custom_card_back = ExtResource("1_n3dep")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_otv0u")

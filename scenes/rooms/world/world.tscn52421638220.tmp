@@ -1,0 +1,218 @@
+[gd_scene load_steps=11 format=3 uid="uid://doehnvoppesjb"]
+
+[ext_resource type="Script" uid="uid://caynxokfigffc" path="res://scenes/rooms/world/world.gd" id="1_m1ldp"]
+[ext_resource type="Shader" uid="uid://c3xamfp3rcw4x" path="res://assets/shader/synapse.gdshader" id="2_qu1hd"]
+[ext_resource type="PackedScene" uid="uid://csou40p41pdfk" path="res://scenes/rooms/world/play_display/play_display.tscn" id="2_woxnb"]
+[ext_resource type="PackedScene" uid="uid://mcxryk1sq0fr" path="res://scenes/rooms/world/card_module_tooltip.tscn" id="3_yqbm3"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="4_rtbnb"]
+[ext_resource type="Texture2D" uid="uid://2tfj3wtcmvw0" path="res://assets/texture/metal_panel.png" id="4_x0juk"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="5_s3pwo"]
+[ext_resource type="PackedScene" uid="uid://bn8y8bv6iorsd" path="res://scenes/rooms/world/power_button.tscn" id="6_gj05t"]
+[ext_resource type="PackedScene" uid="uid://cwru8wa70x42v" path="res://scenes/rooms/world/shop_menu/shop_menu.tscn" id="9_xrsqf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtbnb"]
+shader = ExtResource("2_qu1hd")
+shader_parameter/pixel_size = Vector2(0.001, 0.001)
+shader_parameter/voronoi_scale = 20.0
+shader_parameter/voronoi_seed = 0.0
+shader_parameter/electric_scale = 20.0
+shader_parameter/electric_speed = 1.0
+shader_parameter/electric_power = 3.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_m1ldp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_rtbnb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayDisplay" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/Panel" instance=ExtResource("2_woxnb")]
+layout_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Panel" type="NinePatchRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+texture = ExtResource("4_x0juk")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "Quota"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_s3pwo")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
+text = "/"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_s3pwo")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "in "
+vertical_alignment = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rtbnb")
+theme_override_font_sizes/font_size = 32
+text = " turns"
+vertical_alignment = 2
+
+[node name="Panel2" type="NinePatchRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_x0juk")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Panel2/MarginContainer" instance=ExtResource("6_gj05t")]
+layout_mode = 2
+
+[node name="Panel" type="NinePatchRect" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+texture = ExtResource("4_x0juk")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 11
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="CardModuleTooltip" parent="CanvasLayer" instance=ExtResource("3_yqbm3")]
+offset_left = 353.0
+offset_top = 260.0
+offset_right = -543.0
+offset_bottom = -336.0
+
+[node name="ShopMenu" parent="CanvasLayer" instance=ExtResource("9_xrsqf")]
+visible = false
+offset_left = -518.0
+offset_top = -336.0
+offset_right = 522.0
+offset_bottom = 342.0

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn8y8bv6iorsd"]
+
+[ext_resource type="Script" uid="uid://dq1q7qgjifx6p" path="res://scenes/rooms/world/menu_ui/ui_elements/power_button.gd" id="1_q78j6"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="1_rht4l"]
+[ext_resource type="Texture2D" uid="uid://2tfj3wtcmvw0" path="res://assets/texture/metal_panel.png" id="2_58ch1"]
+
+[node name="MetalPanelButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 553.0
+offset_bottom = 215.0
+script = ExtResource("1_q78j6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_58ch1")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rht4l")
+theme_override_font_sizes/font_size = 32
+text = "Power ON"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://cvcyus0dnhff8"]
+
+[ext_resource type="Texture2D" uid="uid://di63l7q7ugs3b" path="res://assets/texture/card_back/end_depot_card_slice.png" id="1_bevab"]
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_yf2ed"]
+[ext_resource type="Texture2D" uid="uid://d2qq2r4e1vkbq" path="res://assets/texture/card/end_power_depot.png" id="2_cgtxh"]
+
+[resource]
+script = ExtResource("1_yf2ed")
+texture = ExtResource("2_cgtxh")
+name = "Power Depot"
+resistance = 0.0
+power_output = 0.0
+transmission_strength = 0
+can_generate_power = false
+ability_description = "Collects [POWER]."
+rarity = 4
+custom_card_back = ExtResource("1_bevab")
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("1_yf2ed")

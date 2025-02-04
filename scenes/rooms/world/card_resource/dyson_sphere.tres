@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://chjwxhm0vv7fy"]
+
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_vdb8d"]
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="2_av03w"]
+[ext_resource type="Texture2D" uid="uid://ihduqth14ldx" path="res://assets/texture/card/dyson_sphere.png" id="3_vdb8d"]
+
+[resource]
+script = ExtResource("2_av03w")
+texture = ExtResource("3_vdb8d")
+name = "Dyson Sphere"
+resistance = 40.0
+power_output = 0.0
+transmission_strength = 5
+can_generate_power = true
+ability_description = "+2.5[POWER] for every [CARD:solar_panel] on array
+-2[POWER] for every card that is not [CARD:solar_panel]
++1.2[RESISTANCE] to all card that is not [CARD:solar_panel]"
+rarity = 3
+custom_card_back = ExtResource("1_vdb8d")
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("2_av03w")

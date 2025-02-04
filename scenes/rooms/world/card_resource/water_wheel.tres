@@ -1,18 +1,20 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://b6gnvkppsy3by"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://b6gnvkppsy3by"]
 
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_dieux"]
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_ek1j8"]
 [ext_resource type="Texture2D" uid="uid://cxdmghano8hv3" path="res://assets/texture/card/water_wheel.png" id="2_dieux"]
 
 [resource]
 script = ExtResource("1_dieux")
 texture = ExtResource("2_dieux")
 name = "Water Wheel"
-description = "+1.25 Bonus Power if an adjacent card is Water Wheel
-+1.25 Bonus Power if an adjacent card is Water Wheel
-+1.25 Bonus Power if an adjacent card is Water Wheel
-+1.25 Bonus Power if an adjacent card is Water Wheel"
-power_generation = 1.25
+resistance = 2.0
+power_output = 3.5
 transmission_strength = 1
-resistance = 0.0
+can_generate_power = true
+ability_description = "Generates 2[POWER].
+Bonus 2.5[POWER] if adjacent to one [CARD:water_wheel]."
+rarity = 0
+custom_card_back = ExtResource("1_ek1j8")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_dieux")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bdoivwxqploix"]
+
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_xwpfi"]
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="2_co6cy"]
+[ext_resource type="Texture2D" uid="uid://bu8sa1cvwgj5o" path="res://assets/texture/card/toaster.png" id="3_xwpfi"]
+
+[resource]
+script = ExtResource("2_co6cy")
+texture = ExtResource("3_xwpfi")
+name = "Toaster"
+resistance = 0.2
+power_output = 1.75
+transmission_strength = 1
+can_generate_power = true
+ability_description = "Adds [CARD:toasted_bread] to array every turn.
+All card -0.1[RESISTANCE] permenantly every tick.
+All card +0.1[POWER] permenantly every tick."
+rarity = 3
+custom_card_back = ExtResource("1_xwpfi")
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("2_co6cy")

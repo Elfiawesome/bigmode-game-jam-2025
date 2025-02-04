@@ -9,8 +9,11 @@ var registries: Dictionary[String, CategoryRegistry] = {}
 
 const MISC := "misc"
 const ROOM := "room"
+const MENUUI := "menu_ui"
 const CARDABILITY := "card_ability"
 const CARDRESOURCE := "card_resource"
+const ITEMRESOURCE := "item_resource"
+const SOUND := "sound"
 const TRANSITION := "transition"
 
 
@@ -20,7 +23,22 @@ func _ready() -> void:
 
 func _auto_load_registries_debug() -> void:
 	# TODO: This must not be here
-	pass
+	_auto_register_cards()
+func _auto_register_cards() -> void:
+	var card_resources := _get_all_files_from_directory("res://scenes/rooms/world/card_resource/", "tres")
+	for resource in card_resources:
+		var card_id := resource.split("/")[-1].split(".")[0]
+		Registries.register_resource(Registries.CARDRESOURCE, card_id, load(resource))
+	var card_abilities := _get_all_files_from_directory("res://scenes/rooms/world/card_ability/", "gd")
+	for ability in card_abilities:
+		var card_id := ability.split("/")[-1].split(".")[0]
+		if card_id != "card_ability":
+			Registries.register_resource(Registries.CARDABILITY, card_id, load(ability))
+	var item_resource := _get_all_files_from_directory("res://scenes/rooms/world/item_resource/", "tres")
+	for item in item_resource:
+		var item_id := item.split("/")[-1].split(".")[0]
+		Registries.register_resource(Registries.ITEMRESOURCE, item_id, load(item))
+	
 
 
 func _get_all_files_from_directory(path : String, file_ext:= "gd", files: Array[String] = []) -> Array[String]:

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://covbxgsk5qtud"]
+
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_kgh64"]
+[ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="2_xbvql"]
+[ext_resource type="Texture2D" uid="uid://bhl5ajwjan3i1" path="res://assets/texture/card/wind_turbine.png" id="3_kgh64"]
+
+[resource]
+script = ExtResource("2_xbvql")
+texture = ExtResource("3_kgh64")
+name = "Wind Turbine"
+resistance = 0.0
+power_output = 2.75
+transmission_strength = 2
+can_generate_power = true
+ability_description = "Generates 3.75[POWER]
+-2.75[POWER] if adjacent to any [CARD:wind_turbine]."
+rarity = 0
+custom_card_back = ExtResource("1_kgh64")
+flavor_text = ""
+metadata/_custom_type_script = ExtResource("2_xbvql")

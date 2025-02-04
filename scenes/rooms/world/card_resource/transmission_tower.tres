@@ -1,15 +1,19 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://0ivg8mm3xmrh"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://0ivg8mm3xmrh"]
 
 [ext_resource type="Script" uid="uid://dq6cviamsh0b0" path="res://scenes/rooms/world/card_resource/card_resource.gd" id="1_vc7f2"]
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="1_w3clf"]
 [ext_resource type="Texture2D" uid="uid://ddbejhvu5rsqs" path="res://assets/texture/card/transmission_tower.png" id="2_bvrbr"]
 
 [resource]
 script = ExtResource("1_vc7f2")
 texture = ExtResource("2_bvrbr")
 name = "Transmission Tower"
-description = ""
-power_generation = 0.0
+resistance = 0.5
+power_output = 0.0
 transmission_strength = 3
-resistance = 0.0
+can_generate_power = false
+ability_description = "Has 3[TRANSMISSION]."
+rarity = 1
+custom_card_back = ExtResource("1_w3clf")
 flavor_text = ""
 metadata/_custom_type_script = ExtResource("1_vc7f2")

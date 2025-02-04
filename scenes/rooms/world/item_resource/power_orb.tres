@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cj6km3xytfbhk"]
+
+[ext_resource type="Script" uid="uid://c7k0518n2pteg" path="res://scenes/rooms/world/item_resource/item_resource.gd" id="1_16cy6"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="2_77c5a"]
+
+[resource]
+script = ExtResource("1_16cy6")
+texture = ExtResource("2_77c5a")
+name = ""
+metadata/_custom_type_script = ExtResource("1_16cy6")

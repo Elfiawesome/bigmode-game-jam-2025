@@ -1,0 +1,205 @@
+[gd_scene load_steps=9 format=3 uid="uid://ygwbofafbm8x"]
+
+[ext_resource type="Texture2D" uid="uid://d2qq2r4e1vkbq" path="res://assets/texture/card/end_power_depot.png" id="1_0hld7"]
+[ext_resource type="Script" uid="uid://cj68l13adaj7o" path="res://scenes/rooms/world/menu_ui/shop_menu/shop_item.gd" id="1_2d3pv"]
+[ext_resource type="Texture2D" uid="uid://chsbq41732dis" path="res://assets/texture/card_back/desaturated_card_shadow_slice.png" id="2_2d3pv"]
+[ext_resource type="FontFile" uid="uid://drphe7au6q7v2" path="res://assets/fonts/pixelmix_bold.ttf" id="3_dyha5"]
+[ext_resource type="FontFile" uid="uid://drccod80byf6q" path="res://assets/fonts/pixelmix.ttf" id="5_dyha5"]
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="6_7tr4f"]
+[ext_resource type="Texture2D" uid="uid://sc6sscgkm768" path="res://assets/texture/icons/resistance.png" id="7_ywa6g"]
+[ext_resource type="Texture2D" uid="uid://cxg253qw6r5wr" path="res://assets/texture/icons/transmission_strength.png" id="8_0dgxm"]
+
+[node name="Control" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -717.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_2d3pv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2.5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Rarity" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_0hld7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ColorRect" type="NinePatchRect" parent="VBoxContainer"]
+self_modulate = Color(1, 0.739, 0.46, 0.105882)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_2d3pv")
+region_rect = Rect2(0, 0, 37, 37)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemName" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Item Name"
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_dyha5")
+bbcode_enabled = true
+fit_content = true
+
+[node name="PowerOutput" type="HBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Power Output"
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/PowerOutput"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/PowerOutput"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_7tr4f")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Resistance" type="HBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Resistance"
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/Resistance"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/Resistance"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_ywa6g")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TransmissionStrength" type="HBoxContainer" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "Transmission Strength"
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/TransmissionStrength"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_dyha5")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ColorRect/MarginContainer/VBoxContainer/TransmissionStrength"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_0dgxm")
+expand_mode = 3
+stretch_mode = 5

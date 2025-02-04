@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2we0k7mbeab8"]
+
+[ext_resource type="Texture2D" uid="uid://bwosqjqg7pvl" path="res://assets/texture/icons/energy.png" id="1_e0l3l"]
+[ext_resource type="Material" uid="uid://ddvc2gopphjj0" path="res://assets/shader/default_orb_shader.tres" id="1_fp2ml"]
+[ext_resource type="Script" uid="uid://c6fgju7sn03o3" path="res://scenes/rooms/world/play_display/item_flow_effect.gd" id="1_vnchn"]
+
+[node name="ItemFlowEffect" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_vnchn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_e0l3l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_fp2ml")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+color = Color(1, 1, 0.247059, 1)
