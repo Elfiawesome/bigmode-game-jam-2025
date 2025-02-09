@@ -186,3 +186,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed && event.keycode == KEY_SPACE:
 			power_button._on_mouse_clicked()
+		if event.pressed && event.keycode == KEY_Q:
+			for i in 20:
+				play_display.add_card_module("solar_panel")
+		
